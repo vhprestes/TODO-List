@@ -84,7 +84,7 @@ public class Main {
     Scanner input = new Scanner(file);
     while (input.hasNextLine()) {
       String data = input.nextLine();
-      if (data.contains(status)) {
+      if (data.toUpperCase().contains(status)) {
         System.out.println("Aqui é: ConsultarTaskPorStatus: " + data);
       }
     }
