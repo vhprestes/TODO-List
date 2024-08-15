@@ -20,12 +20,13 @@ public class Main {
     String path = "/home/victor/Documentos/projetos/zg-projetos/k1-t3/to-do/src/main/java/org/todo/file.txt";
     File file = new File(path);
     Scanner input = new Scanner(System.in);
-    ConsultarTasksPorStatus(file);
+    ConsultarTasksPorStatus(file, "DOING");
 
-//    TESTE DE CRIAÇÃO DE TASK
-    Task task = new Task("Estudar", "Estudar Java", parseDate("10/10/2024"), 1, CategoryModel.ESTUDOS, StatusModel.TODO);
-  //escreve task no arquivo txt, com cada item separado por |
-    System.out.println("A TASK VEIO ASSIM:" + task.toString());
+
+//    TESTE DE CRIAÇÃO DE TASK - AS TASKS DEVEM SER CRIADAS NESSE FORMATO, UTILIZANDO PARSEDATE PARA A DATA
+//    Task task = new Task("Estudar", "Estudar Java", parseDate("10/10/2024"), 1, CategoryModel.ESTUDOS, StatusModel.TODO);
+//  //escreve task no arquivo txt, com cada item separado por |
+//    System.out.println("A TASK VEIO ASSIM:" + task.toString());
 
 
 
@@ -78,13 +79,17 @@ public class Main {
   }
 
 
-  public static void ConsultarTasksPorStatus (File file) throws FileNotFoundException {
+  public static void ConsultarTasksPorStatus (File file, String status) throws FileNotFoundException {
+//    os status são: TODO, DOING, DONE. O método deve retornar todas as tasks com o status informado
     Scanner input = new Scanner(file);
     while (input.hasNextLine()) {
-      String line = input.nextLine();
-      System.out.println("DATA VEIO ASSIM:" + line);
+      String data = input.nextLine();
+      if (data.contains(status)) {
+        System.out.println("Aqui é: ConsultarTaskPorStatus: " + data);
+      }
     }
   }
+
 
     public static Date parseDate(String dateStr) {
       SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
@@ -95,5 +100,7 @@ public class Main {
         return null;
       }
     }
+
+
 
 }
