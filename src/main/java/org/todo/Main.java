@@ -2,19 +2,36 @@ package org.todo;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.OffsetDateTime;
 import java.util.Scanner;
+import org.interfaces.CategoryModel;
+import org.interfaces.StatusModel;
+import org.interfaces.Task;
+import java.util.Date;
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
 
-  public static void main(String[] args) {
-// TODO: método que lê o arquivo txt file.txt
-    File file = new File("file.txt");
+  public static void main(String[] args) throws FileNotFoundException {
+// DONE: método que lê o arquivo txt file.txt
+    String path = "/home/victor/Documentos/projetos/zg-projetos/k1-t3/to-do/src/main/java/org/todo/file.txt";
+    File file = new File(path);
     Scanner input = new Scanner(System.in);
+    ConsultarTasksPorStatus(file);
+
+//    TESTE DE CRIAÇÃO DE TASK
+    Task task = new Task("Estudar", "Estudar Java", parseDate("10/10/2024"), 1, CategoryModel.ESTUDOS, StatusModel.TODO);
+  //escreve task no arquivo txt, com cada item separado por |
+    System.out.println("A TASK VEIO ASSIM:" + task.toString());
+
+
+
     Menu();
     int option = input.nextInt();
-//    System.out.print("Você digitou o número:  " + option);
+
     switch (option){
       case 1:
 //        TODO: método que consulta as tasks por status no txt
@@ -61,5 +78,22 @@ public class Main {
   }
 
 
+  public static void ConsultarTasksPorStatus (File file) throws FileNotFoundException {
+    Scanner input = new Scanner(file);
+    while (input.hasNextLine()) {
+      String line = input.nextLine();
+      System.out.println("DATA VEIO ASSIM:" + line);
+    }
+  }
+
+    public static Date parseDate(String dateStr) {
+      SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+      try {
+        return dateFormat.parse(dateStr);
+      } catch (ParseException e) {
+        e.printStackTrace();
+        return null;
+      }
+    }
 
 }
