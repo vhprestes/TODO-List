@@ -1,12 +1,16 @@
 package org.todo;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.OffsetDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 import org.interfaces.CategoryModel;
 import org.interfaces.StatusModel;
@@ -54,13 +58,14 @@ public class Main {
         ConsultarTasksPorCategoriaMenu(file);
         break;
       case 4:
-//        TODO: método que adiciona uma task no txt
+//        DONE: método que adiciona uma task no txt
         System.out.println("Adicionar task");
         AdicionarTask(file);
         break;
       case 5:
-//        TODO: método que remove uma task no txt
+//        TODO: método que remove uma task no txt (pelo nome)
         System.out.println("Remover task");
+        RemoverTaskMenu(file);
         break;
       case 6:
 //        TODO: método que edita uma task no txt >> ESSE MÉTODO NÃO É OBRIGATÓRIO <<
@@ -323,8 +328,41 @@ public class Main {
     }
 
 
+    public static void RemoverTaskMenu(File file) throws IOException {
+      Scanner input = new Scanner(System.in);
+      System.out.println("Digite o nome da tarefa que deseja remover:");
+      String taskName = input.nextLine();
+      RemoverTask(file, taskName);
+    }
 
-    public static void DeleteTask(File file) throws IOException {
+
+  public static void RemoverTask(File file, String taskName) throws IOException {
+    List<String> lines = new ArrayList<>();
+    try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
+      String line;
+//      reading
+      while ((line = reader.readLine()) != null) {
+        // Se o nome da tarefa na linha não for igual ao nome da tarefa a ser removida, adiciona a linha à lista
+
+        if (!line.split("\\|")[0].trim().equalsIgnoreCase(taskName)) {
+          lines.add(line);
+        }
+      }
+    }
+// writing
+    try (FileWriter writer = new FileWriter(file)) {
+      for (String line : lines) {
+        writer.write(line + System.lineSeparator());
+      }
+    }
+    System.out.println("Tarefa removida com sucesso!");
+  }
+
+    public static void SearchTaskByName(File file, String name) throws IOException {
+//    System.out.println("Digite o nome da tarefa que quer buscar");
+//    Scanner input = new Scanner(System.in);
+//    String taskName = input.nextLine();
+    Scanner input = new Scanner(file);
 
     }
 
