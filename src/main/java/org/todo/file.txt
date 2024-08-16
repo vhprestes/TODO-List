@@ -1,0 +1,9 @@
+Java | Fazer o projeto de java | 18/08/2024 | 1 | ESTUDOS | DOING
+Groovy | Iniciar groovy | 19/08/2024 | 1 | ESTUDOS | TODO
+Monstro | Ir a academia | 15/08/2024 | 1 | ESTUDOS | DONE
+Agua | Beber água | 16/08/2024 | 1 | CASA | DOING
+Compras | Comprar pão | 20/08/2024 | 1 | CASA | TODO
+Limpeza | Limpar meu pc | 15/08/2024 | 2 | ESTUDOS | DOING
+Dog | Passear com o dog | 16/08/2024 | 3 | LAZER | TODO
+Cloud | Estudar cloud | 20/08/2024 | 4 | ESTUDOS | TODO
+Café | Fazer café | 21/08/2024 | 4 | CASA | TODO
