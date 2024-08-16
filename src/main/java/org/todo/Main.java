@@ -20,7 +20,6 @@ public class Main {
     String path = "/home/victor/Documentos/projetos/zg-projetos/k1-t3/to-do/src/main/java/org/todo/file.txt";
     File file = new File(path);
     Scanner input = new Scanner(System.in);
-    ConsultarTasksPorStatus(file, "DOING");
 
 
 //    TESTE DE CRIAÇÃO DE TASK - AS TASKS DEVEM SER CRIADAS NESSE FORMATO, UTILIZANDO PARSEDATE PARA A DATA
@@ -28,15 +27,14 @@ public class Main {
 //  //escreve task no arquivo txt, com cada item separado por |
 //    System.out.println("A TASK VEIO ASSIM:" + task.toString());
 
-
-
     Menu();
     int option = input.nextInt();
 
     switch (option){
       case 1:
-//        TODO: método que consulta as tasks por status no txt
+//        DONE: método que consulta as tasks por status no txt
         System.out.println("Consultar tasks por status");
+        ConsultarTaskPorStatusMenu(file);
         break;
       case 2:
 //        TODO: método que consulta as tasks por prioridade no txt
@@ -79,8 +77,35 @@ public class Main {
   }
 
 
+  public static void ConsultarTaskPorStatusMenu(File file) throws FileNotFoundException {
+    System.out.println("Escolha um status para filtrar:");
+    System.out.println("1- TODO");
+    System.out.println("2- DOING");
+    System.out.println("3- DONE");
+
+    Scanner input = new Scanner(System.in);
+    int option = input.nextInt();
+
+    switch (option) {
+      case 1:
+        ConsultarTasksPorStatus(file, "TODO");
+        break;
+      case 2:
+        ConsultarTasksPorStatus(file, "DOING");
+        break;
+      case 3:
+        ConsultarTasksPorStatus(file, "DONE");
+        break;
+      default:
+        System.out.println("Opção inválida");
+
+    }
+  }
+
+
   public static void ConsultarTasksPorStatus (File file, String status) throws FileNotFoundException {
-//    os status são: TODO, DOING, DONE. O método deve retornar todas as tasks com o status informado
+//    os status são: aTODO, DOING, DONE. O método deve retornar todas as tasks com o status informado
+//    DONE
     Scanner input = new Scanner(file);
     while (input.hasNextLine()) {
       String data = input.nextLine();
