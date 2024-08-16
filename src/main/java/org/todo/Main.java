@@ -242,23 +242,19 @@ public class Main {
 
     System.out.println("Digite a data da tarefa (dd/MM/yyyy):");
     String dataStr = input.nextLine();
+    Date data = null;
     try {
-      parseDate(dataStr);
+      data = parseDate(dataStr);
     } catch (Exception e) {
       System.out.println("A data foi informada em um formato não válido. Tente novamente com o formato dd/MM/yyyy");
+      return;
     }
-//    Date data = parseDate(dataStr);
-//    System.out.println("A data foi informada em um formato não válido. Tente novamente com o formato dd/MM/yyyy");
-
 
     System.out.println("Digite um número de 1 a 5 correspondente a prioridade da tarefa:");
     int prioridade = input.nextInt();
-    try {
-      if (prioridade < 1 || prioridade > 5) {
-        throw new Exception();
-      }
-    } catch (Exception e) {
+    if (prioridade < 1 || prioridade > 5) {
       System.out.println("A prioridade informada é inválida. Tente novamente com um número de 1 a 5");
+      return;
     }
 
     input.nextLine(); // Consumir a nova linha
@@ -281,7 +277,7 @@ public class Main {
         break;
       default:
         System.out.println("Categoria inválida");
-        break;
+        return;
     }
 
     System.out.println("Digite o status da tarefa. Os status são: TODO, DOING, DONE");
@@ -299,20 +295,35 @@ public class Main {
         break;
       default:
         System.out.println("Status inválido");
-        break;
+        return;
     }
 
-//    SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-//    String dataFormatada = dateFormat.format(data);
+    Task novaTask = new Task(nome, descricao, data, prioridade, categoryModelOption, statusModelOption);
 
-//    String novaTask = nome + " | " + dataFormatada + " | " + prioridade + " | " + categoria + " | " + status;
-
-    Task novaTask = new Task(nome, descricao, parseDate(dataStr), prioridade, categoryModelOption, statusModelOption);
-
-
-    try (FileWriter writer = new FileWriter(file, true)) {
-      writer.write("\n" + novaTask.toString() );
+    List<Task> tasks = new ArrayList<>();
+    try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
+      String line;
+      while ((line = reader.readLine()) != null) {
+        String[] taskData = line.split("\\|");
+        String taskName = taskData[0].trim();
+        String taskDescription = taskData[1].trim();
+        Date taskDate = parseDate(taskData[2].trim());
+        int taskPriority = Integer.parseInt(taskData[3].trim());
+        CategoryModel taskCategory = CategoryModel.valueOf(taskData[4].trim().toUpperCase());
+        StatusModel taskStatus = StatusModel.valueOf(taskData[5].trim().toUpperCase());
+        tasks.add(new Task(taskName, taskDescription, taskDate, taskPriority, taskCategory, taskStatus));
+      }
     }
+
+    tasks.add(novaTask);
+    tasks.sort((t1, t2) -> Integer.compare(t1.getPriority(), t2.getPriority()));
+
+    try (FileWriter writer = new FileWriter(file)) {
+      for (Task task : tasks) {
+        writer.write(task.toString() + System.lineSeparator());
+      }
+    }
+
     System.out.println("Tarefa adicionada com sucesso!");
   }
 
