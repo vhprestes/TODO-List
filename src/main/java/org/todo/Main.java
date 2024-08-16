@@ -21,6 +21,7 @@ public class Main {
     File file = new File(path);
     Scanner input = new Scanner(System.in);
 
+    ConsultarTasksPorPrioridade(file, 1);
 
 //    TESTE DE CRIAÇÃO DE TASK - AS TASKS DEVEM SER CRIADAS NESSE FORMATO, UTILIZANDO PARSEDATE PARA A DATA
 //    Task task = new Task("Estudar", "Estudar Java", parseDate("10/10/2024"), 1, CategoryModel.ESTUDOS, StatusModel.TODO);
@@ -37,8 +38,9 @@ public class Main {
         ConsultarTaskPorStatusMenu(file);
         break;
       case 2:
-//        TODO: método que consulta as tasks por prioridade no txt
+//        DONE: método que consulta as tasks por prioridade no txt
         System.out.println("Consultar tasks por prioridade");
+        ConsultarTasksPorPrioridadeMenu(file);
         break;
       case 3:
 //        TODO: método que consulta as tasks a por categoria no txt
@@ -111,6 +113,60 @@ public class Main {
       String data = input.nextLine();
       if (data.toUpperCase().contains(status)) {
         System.out.println("Aqui é: ConsultarTaskPorStatus: " + data);
+      }
+    }
+  }
+
+
+
+  public static void ConsultarTasksPorPrioridadeMenu(File file) throws FileNotFoundException {
+    System.out.println("Escolha uma prioridade para filtrar:");
+    System.out.println("1- Urgente");
+    System.out.println("2- Alta");
+    System.out.println("3- Media");
+    System.out.println("4- Meh");
+    System.out.println("5- Baixa");
+
+    Scanner input = new Scanner(System.in);
+    int option = input.nextInt();
+
+    switch (option) {
+      case 1:
+        ConsultarTasksPorPrioridade(file, 1);
+        break;
+      case 2:
+        ConsultarTasksPorPrioridade(file, 2);
+        break;
+      case 3:
+        ConsultarTasksPorPrioridade(file, 3);
+        break;
+      case 4:
+        ConsultarTasksPorPrioridade(file, 4);
+        break;
+      case 5:
+        ConsultarTasksPorPrioridade(file, 5);
+        break;
+      default:
+        System.out.println("Opção inválida");
+        break;
+
+    }
+  }
+  public static void ConsultarTasksPorPrioridade(File file, Integer prioridade) throws FileNotFoundException {
+    Scanner input = new Scanner(file);
+    while (input.hasNextLine()) {
+      String data = input.nextLine();
+      String[] task = data.split("\\|");
+//    >>>>>>>>>>>>>  ATENÇÃO MULA <<<<<<<<<<<<<
+//  ao dividir a linha, os índices do array task são:
+//  task[0] - Nome da Tarefa
+//  task[1] - Data
+//  task[2] - >>>>>>> Prioridade <<<<<<<
+//  task[3] - Categoria
+//  task[4] - Status
+      int taskPriority = Integer.parseInt(task[2].trim());
+      if (taskPriority == prioridade) {
+        System.out.println("Aqui é: ConsultarTasksPorPrioridade: " + data);
       }
     }
   }
