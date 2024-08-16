@@ -13,6 +13,8 @@ import java.util.Date;
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
+
+
 public class Main {
 
   public static void main(String[] args) throws FileNotFoundException {
@@ -21,7 +23,8 @@ public class Main {
     File file = new File(path);
     Scanner input = new Scanner(System.in);
 
-    ConsultarTasksPorPrioridade(file, 1);
+//    ConsultarTasksPorPrioridade(file, 1);
+    ConsultarTasksPorCategoria(file, "Estudos");
 
 //    TESTE DE CRIAÇÃO DE TASK - AS TASKS DEVEM SER CRIADAS NESSE FORMATO, UTILIZANDO PARSEDATE PARA A DATA
 //    Task task = new Task("Estudar", "Estudar Java", parseDate("10/10/2024"), 1, CategoryModel.ESTUDOS, StatusModel.TODO);
@@ -45,6 +48,7 @@ public class Main {
       case 3:
 //        TODO: método que consulta as tasks a por categoria no txt
         System.out.println("Consultar tasks por categoria");
+        ConsultarTasksPorCategoriaMenu(file);
         break;
       case 4:
 //        TODO: método que adiciona uma task no txt
@@ -103,7 +107,6 @@ public class Main {
 
     }
   }
-
 
   public static void ConsultarTasksPorStatus (File file, String status) throws FileNotFoundException {
 //    os status são: aTODO, DOING, DONE. O método deve retornar todas as tasks com o status informado
@@ -164,9 +167,53 @@ public class Main {
 //  task[2] - >>>>>>> Prioridade <<<<<<<
 //  task[3] - Categoria
 //  task[4] - Status
+//      assim consigo aplicar em todos os filtros sem mudar muito
       int taskPriority = Integer.parseInt(task[2].trim());
       if (taskPriority == prioridade) {
         System.out.println("Aqui é: ConsultarTasksPorPrioridade: " + data);
+      }
+    }
+  }
+
+
+
+  public static void ConsultarTasksPorCategoriaMenu(File file) throws FileNotFoundException {
+    System.out.println("Escolha uma categoria para filtrar:");
+    System.out.println("1- Casa");
+    System.out.println("2- Estudos");
+    System.out.println("3- Trabalho");
+    System.out.println("4- Lazer");
+
+    Scanner input = new Scanner(System.in);
+    int option = input.nextInt();
+
+    switch (option) {
+      case 1:
+        ConsultarTasksPorCategoria(file, "Casa");
+        break;
+      case 2:
+        ConsultarTasksPorCategoria(file, "Estudos");
+        break;
+      case 3:
+        ConsultarTasksPorCategoria(file, "Trabalho");
+        break;
+      case 4:
+        ConsultarTasksPorCategoria(file, "Lazer");
+        break;
+      default:
+        System.out.println("Opção inválida");
+        break;
+
+    }
+  }
+  public static void ConsultarTasksPorCategoria(File file, String categoria) throws FileNotFoundException {
+    Scanner input = new Scanner(file);
+    while (input.hasNextLine()) {
+      String data = input.nextLine();
+      String[] task = data.split("\\|");
+      String compare = task[3].trim().toUpperCase();
+      if (compare.equals(categoria.toUpperCase())) {
+        System.out.println("Tarefa: " + data);
       }
     }
   }
