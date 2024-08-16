@@ -71,12 +71,6 @@ public class Task {
   public String toString() {
     SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 
-    return "Tarefa " +
-        "Nome = " + name +
-        ", \nDescrição = " + description +
-        ", \nData Limite = " + dateFormat.format(finalDate) +
-        ", \nPrioridade = " + priority +
-        ", \nCategoria = " + category +
-        ", \nStatus = " + status + "\n";
+    return  name + " | " + description + " | " + dateFormat.format(finalDate) + " | " + priority + " | " + category + " | " + status;
   }
 }
