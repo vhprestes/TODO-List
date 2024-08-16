@@ -157,7 +157,6 @@ public class Main {
     while (input.hasNextLine()) {
       String data = input.nextLine();
       String[] task = data.split("\\|");
-//    >>>>>>>>>>>>>  ATENÇÃO MULA (2) TEM QUE TER NOME E DESCRIÇÃO <<<<<<<<<<<<<
 //  ao dividir a linha, os índices do array task são:
 //  task[0] - Nome da Tarefa
 //  task[1] - Descrição
