@@ -14,6 +14,7 @@ import java.util.Date;
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 
+//  TODO: criar um método abstrato que substitua todos os métodos em um só
 
 public class Main {
 
@@ -24,7 +25,7 @@ public class Main {
     Scanner input = new Scanner(System.in);
 
 //    ConsultarTasksPorPrioridade(file, 1);
-    ConsultarTasksPorCategoria(file, "Estudos");
+//    ConsultarTasksPorCategoria(file, "Estudos");
 
 //    TESTE DE CRIAÇÃO DE TASK - AS TASKS DEVEM SER CRIADAS NESSE FORMATO, UTILIZANDO PARSEDATE PARA A DATA
 //    Task task = new Task("Estudar", "Estudar Java", parseDate("10/10/2024"), 1, CategoryModel.ESTUDOS, StatusModel.TODO);
@@ -46,7 +47,7 @@ public class Main {
         ConsultarTasksPorPrioridadeMenu(file);
         break;
       case 3:
-//        TODO: método que consulta as tasks a por categoria no txt
+//        DONE: método que consulta as tasks a por categoria no txt
         System.out.println("Consultar tasks por categoria");
         ConsultarTasksPorCategoriaMenu(file);
         break;
