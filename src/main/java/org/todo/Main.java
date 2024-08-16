@@ -56,7 +56,7 @@ public class Main {
       case 4:
 //        TODO: método que adiciona uma task no txt
         System.out.println("Adicionar task");
-        adicionarTask(file);
+        AdicionarTask(file);
         break;
       case 5:
 //        TODO: método que remove uma task no txt
@@ -226,7 +226,7 @@ public class Main {
 
 
 
-  public static void adicionarTask(File file) throws IOException {
+  public static void AdicionarTask(File file) throws IOException {
     Scanner input = new Scanner(System.in);
 
     System.out.println("Digite o nome da tarefa:");
@@ -312,9 +312,6 @@ public class Main {
   }
 
 
-
-
-
     public static Date parseDate(String dateStr) {
       SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
       try {
@@ -327,6 +324,9 @@ public class Main {
 
 
 
+    public static void DeleteTask(File file) throws IOException {
+
+    }
 
 
 }
