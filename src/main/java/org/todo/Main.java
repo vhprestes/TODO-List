@@ -2,6 +2,8 @@ package org.todo;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.OffsetDateTime;
@@ -18,7 +20,7 @@ import java.util.Date;
 
 public class Main {
 
-  public static void main(String[] args) throws FileNotFoundException {
+  public static void main(String[] args) throws IOException {
 // DONE: método que lê o arquivo txt file.txt
     String path = "/home/victor/Documentos/projetos/zg-projetos/k1-t3/to-do/src/main/java/org/todo/file.txt";
     File file = new File(path);
@@ -54,6 +56,7 @@ public class Main {
       case 4:
 //        TODO: método que adiciona uma task no txt
         System.out.println("Adicionar task");
+//        adicionarTask(file);
         break;
       case 5:
 //        TODO: método que remove uma task no txt
@@ -161,15 +164,16 @@ public class Main {
     while (input.hasNextLine()) {
       String data = input.nextLine();
       String[] task = data.split("\\|");
-//    >>>>>>>>>>>>>  ATENÇÃO MULA <<<<<<<<<<<<<
+//    >>>>>>>>>>>>>  ATENÇÃO MULA (2) TEM QUE TER NOME E DESCRIÇÃO <<<<<<<<<<<<<
 //  ao dividir a linha, os índices do array task são:
 //  task[0] - Nome da Tarefa
-//  task[1] - Data
-//  task[2] - >>>>>>> Prioridade <<<<<<<
-//  task[3] - Categoria
-//  task[4] - Status
+//  task[1] - Descrição
+//  task[2] - Data
+//  task[3] - >>>>>>> Prioridade <<<<<<<
+//  task[4] - Categoria
+//  task[5] - Status
 //      assim consigo aplicar em todos os filtros sem mudar muito
-      int taskPriority = Integer.parseInt(task[2].trim());
+      int taskPriority = Integer.parseInt(task[3].trim());
       if (taskPriority == prioridade) {
         System.out.println("Aqui é: ConsultarTasksPorPrioridade: " + data);
       }
@@ -212,7 +216,7 @@ public class Main {
     while (input.hasNextLine()) {
       String data = input.nextLine();
       String[] task = data.split("\\|");
-      String compare = task[3].trim().toUpperCase();
+      String compare = task[4].trim().toUpperCase();
       if (compare.equals(categoria.toUpperCase())) {
         System.out.println("Tarefa: " + data);
       }
