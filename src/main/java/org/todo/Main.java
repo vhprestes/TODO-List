@@ -17,9 +17,6 @@ import org.interfaces.StatusModel;
 import org.interfaces.Task;
 import java.util.Date;
 
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
-
 //  TODO: criar um método abstrato que substitua todos os métodos em um só
 
 public class Main {
@@ -29,14 +26,6 @@ public class Main {
     String path = "/home/victor/Documentos/projetos/zg-projetos/k1-t3/to-do/src/main/java/org/todo/file.txt";
     File file = new File(path);
     Scanner input = new Scanner(System.in);
-
-//    ConsultarTasksPorPrioridade(file, 1);
-//    ConsultarTasksPorCategoria(file, "Estudos");
-
-//    TESTE DE CRIAÇÃO DE TASK - AS TASKS DEVEM SER CRIADAS NESSE FORMATO, UTILIZANDO PARSEDATE PARA A DATA
-//    Task task = new Task("Estudar", "Estudar Java", parseDate("10/10/2024"), 1, CategoryModel.ESTUDOS, StatusModel.TODO);
-//  //escreve task no arquivo txt, com cada item separado por |
-//    System.out.println("A TASK VEIO ASSIM:" + task.toString());
 
     Menu();
     int option = input.nextInt();
@@ -63,7 +52,7 @@ public class Main {
         AdicionarTask(file);
         break;
       case 5:
-//        TODO: método que remove uma task no txt (pelo nome)
+//        DONE: método que remove uma task no txt (pelo nome)
         System.out.println("Remover task");
         RemoverTaskMenu(file);
         break;
@@ -118,7 +107,6 @@ public class Main {
   }
 
   public static void ConsultarTasksPorStatus (File file, String status) throws FileNotFoundException {
-//    os status são: aTODO, DOING, DONE. O método deve retornar todas as tasks com o status informado
 //    DONE
     Scanner input = new Scanner(file);
     while (input.hasNextLine()) {
@@ -180,7 +168,7 @@ public class Main {
 //      assim consigo aplicar em todos os filtros sem mudar muito
       int taskPriority = Integer.parseInt(task[3].trim());
       if (taskPriority == prioridade) {
-        System.out.println("Aqui é: ConsultarTasksPorPrioridade: " + data);
+        System.out.println("Tarefa: " + data);
       }
     }
   }
@@ -369,13 +357,7 @@ public class Main {
     System.out.println("Tarefa removida com sucesso!");
   }
 
-    public static void SearchTaskByName(File file, String name) throws IOException {
-//    System.out.println("Digite o nome da tarefa que quer buscar");
-//    Scanner input = new Scanner(System.in);
-//    String taskName = input.nextLine();
-    Scanner input = new Scanner(file);
 
-    }
 
 
 }
