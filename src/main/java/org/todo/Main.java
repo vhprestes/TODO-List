@@ -56,7 +56,7 @@ public class Main {
       case 4:
 //        TODO: método que adiciona uma task no txt
         System.out.println("Adicionar task");
-//        adicionarTask(file);
+        adicionarTask(file);
         break;
       case 5:
 //        TODO: método que remove uma task no txt
@@ -224,6 +224,97 @@ public class Main {
   }
 
 
+
+
+  public static void adicionarTask(File file) throws IOException {
+    Scanner input = new Scanner(System.in);
+
+    System.out.println("Digite o nome da tarefa:");
+    String nome = input.nextLine();
+
+    System.out.println("Digite a descrição da tarefa:");
+    String descricao = input.nextLine();
+
+    System.out.println("Digite a data da tarefa (dd/MM/yyyy):");
+    String dataStr = input.nextLine();
+    try {
+      parseDate(dataStr);
+    } catch (Exception e) {
+      System.out.println("A data foi informada em um formato não válido. Tente novamente com o formato dd/MM/yyyy");
+    }
+//    Date data = parseDate(dataStr);
+//    System.out.println("A data foi informada em um formato não válido. Tente novamente com o formato dd/MM/yyyy");
+
+
+    System.out.println("Digite um número de 1 a 5 correspondente a prioridade da tarefa:");
+    int prioridade = input.nextInt();
+    try {
+      if (prioridade < 1 || prioridade > 5) {
+        throw new Exception();
+      }
+    } catch (Exception e) {
+      System.out.println("A prioridade informada é inválida. Tente novamente com um número de 1 a 5");
+    }
+
+    input.nextLine(); // Consumir a nova linha
+
+    System.out.println("Digite a categoria da tarefa. As categorias são: Casa, Estudos, Trabalho e Lazer");
+    String categoria = input.nextLine();
+    CategoryModel categoryModelOption = null;
+    switch (categoria.toUpperCase()) {
+      case "CASA":
+        categoryModelOption = CategoryModel.CASA;
+        break;
+      case "ESTUDOS":
+        categoryModelOption = CategoryModel.ESTUDOS;
+        break;
+      case "TRABALHO":
+        categoryModelOption = CategoryModel.TRABALHO;
+        break;
+      case "LAZER":
+        categoryModelOption = CategoryModel.LAZER;
+        break;
+      default:
+        System.out.println("Categoria inválida");
+        break;
+    }
+
+    System.out.println("Digite o status da tarefa. Os status são: TODO, DOING, DONE");
+    String status = input.nextLine();
+    StatusModel statusModelOption = null;
+    switch (status.toUpperCase()) {
+      case "TODO":
+        statusModelOption = StatusModel.TODO;
+        break;
+      case "DOING":
+        statusModelOption = StatusModel.DOING;
+        break;
+      case "DONE":
+        statusModelOption = StatusModel.DONE;
+        break;
+      default:
+        System.out.println("Status inválido");
+        break;
+    }
+
+//    SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+//    String dataFormatada = dateFormat.format(data);
+
+//    String novaTask = nome + " | " + dataFormatada + " | " + prioridade + " | " + categoria + " | " + status;
+
+    Task novaTask = new Task(nome, descricao, parseDate(dataStr), prioridade, categoryModelOption, statusModelOption);
+
+
+    try (FileWriter writer = new FileWriter(file, true)) {
+      writer.write("\n" + novaTask.toString() );
+    }
+    System.out.println("Tarefa adicionada com sucesso!");
+  }
+
+
+
+
+
     public static Date parseDate(String dateStr) {
       SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
       try {
@@ -233,6 +324,8 @@ public class Main {
         return null;
       }
     }
+
+
 
 
 
