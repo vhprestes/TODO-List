@@ -22,8 +22,8 @@ import java.util.Date;
 public class Main {
 
   public static void main(String[] args) throws IOException {
-// DONE: método que lê o arquivo txt file.txt
-    String path = "/home/victor/Documentos/projetos/zg-projetos/k1-t3/to-do/src/main/java/org/todo/file.txt";
+// DONE: método que lê o arquivo txt file.txt por relative patch
+    String path = "src/main/java/org/todo/file.txt";
     File file = new File(path);
     Scanner input = new Scanner(System.in);
 
@@ -112,7 +112,7 @@ public class Main {
     while (input.hasNextLine()) {
       String data = input.nextLine();
       if (data.toUpperCase().contains(status)) {
-        System.out.println("Aqui é: ConsultarTaskPorStatus: " + data);
+        System.out.println(data);
       }
     }
   }
@@ -157,14 +157,6 @@ public class Main {
     while (input.hasNextLine()) {
       String data = input.nextLine();
       String[] task = data.split("\\|");
-//  ao dividir a linha, os índices do array task são:
-//  task[0] - Nome da Tarefa
-//  task[1] - Descrição
-//  task[2] - Data
-//  task[3] - >>>>>>> Prioridade <<<<<<<
-//  task[4] - Categoria
-//  task[5] - Status
-//      assim consigo aplicar em todos os filtros sem mudar muito
       int taskPriority = Integer.parseInt(task[3].trim());
       if (taskPriority == prioridade) {
         System.out.println("Tarefa: " + data);
