@@ -1,5 +1,5 @@
 window.onload = function() {
-    console.log('Hello World');
+// TODO: ADD PERSISTENCE THRU LOCAL STORAGE (PERSISTENCE IS HALFWAY IMPLEMENTED, JUST USE ORIGINALROWS ARRAY AND SETSTORAGE/GETSTORAGE HERE
 }
 
 const button = document.getElementById('submitButton');
@@ -13,7 +13,6 @@ button.addEventListener('click', function() {
     createNewRow();
     fieldCleaner();
     originalRows = Array.from(document.querySelectorAll('#tbody tr')).map(row => row.cloneNode(true));
-    console.log(originalRows);
 });
 
 filter.addEventListener('change', function() {
@@ -184,7 +183,6 @@ const resetFilters = () => {
         tbody.appendChild(row.cloneNode(true));
     });
     addEventListenersToRows();
-    console.log('Filters reset');
 }
 
 const addEventListenersToRows = () => {
