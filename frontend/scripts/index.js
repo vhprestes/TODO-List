@@ -44,12 +44,13 @@ const createNewRow = () => {
     const buttonDelete = document.createElement("button")
     buttonDelete.id = "deleteBtn"
     buttonDelete.innerText = "X"
+    buttonDelete.type = "button"
     buttonDelete.className = String(index)
     index++
 
 
     buttonDelete.addEventListener('click', function() {
-        lines[index].innerHTML = ""
+    tr.remove();
     })
 
     tr.appendChild(tdTitle);
@@ -72,11 +73,3 @@ const fieldCleaner = () => {
     document.getElementById('task-status').value = ""
     document.getElementById('category-id').value = ""
 }
-
-//        <tr>
-//             <td>Comprar pão</td>
-//             <td>Ir na padaria e comprar pão</td>
-//             <td>2021-09-30</td>
-//             <td>1</td>
-//             <td>Casa</td>
-//         </tr>
