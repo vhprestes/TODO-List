@@ -37,9 +37,7 @@ mkdir -p bin
 javac -d bin src/main/java/org/interfaces/*.java src/main/java/org/todo/*.java
 ````
 
-5) Antes de rodar o projeto, é necessário mudar o endereço hardcoded na linha 26 para a localização do arquivo file.txt no seu computador. Esse arquivo pode ser um txt em branco, mas no clone ja vai um exemplo
-
-6) Rode o comando para executar a aplicação:
+5) Rode o comando para executar a aplicação:
 ````bash
 java -cp bin org.todo.Main
 ````
