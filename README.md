@@ -8,13 +8,20 @@ Minha visão com o projeto foi construir soluções simples e funcionais, porém
 
 
 ## Tecnologias utilizadas:
-Java 8.8.0.17
+Java 8.8.0.17;
+
+HTML5
+
+Javascript
 <br/>
 
 <br/>
 
 
 ## Instruções para rodar o projeto
+
+
+### BACKEND
 
 1) Primeiramente, clone o projeto através do comando 
 
@@ -41,3 +48,19 @@ javac -d bin src/main/java/org/interfaces/*.java src/main/java/org/todo/*.java
 ````bash
 java -cp bin org.todo.Main
 ````
+
+
+### FRONTEND
+
+1) Navegue até o diretório frontend:
+
+`````bash
+cd frontend
+`````
+
+2) Abra o arquivo index.html no seu navegador preferido para visualizar a aplicação (SO Linux):
+
+`````bash
+open index.html
+````` 
+
