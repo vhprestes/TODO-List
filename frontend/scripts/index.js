@@ -12,7 +12,7 @@ button.addEventListener('click', function() {
     console.log('Button clicked, onclick function called!');
     createNewRow();
     fieldCleaner();
-    originalRows = Array.from(document.querySelectorAll('#tbody tr')).map(row => row.cloneNode(true));
+    saveStateOfRows();
 });
 
 filter.addEventListener('change', function() {
@@ -118,6 +118,7 @@ const editRow = (tr, buttonEdit) => {
         }
         td.innerText = '';
         td.appendChild(input);
+        saveStateOfRows();
     });
 
     const buttonSave = document.createElement("button");
@@ -131,6 +132,7 @@ const editRow = (tr, buttonEdit) => {
 
     tr.appendChild(buttonSave);
     buttonEdit.style.display = 'none';
+    saveStateOfRows();
 }
 
 const saveRow = (tr, buttonSave) => {
@@ -144,6 +146,7 @@ const saveRow = (tr, buttonSave) => {
         } else if (select) {
             td.innerText = select.value;
         }
+        saveStateOfRows();
     });
 
     const buttonEdit = tr.querySelector('.editBtn');
@@ -197,6 +200,11 @@ const addEventListenersToRows = () => {
 
         buttonDelete.addEventListener('click', function() {
             row.remove();
+            saveStateOfRows();
         });
     });
+}
+
+const saveStateOfRows = () => {
+    originalRows = Array.from(document.querySelectorAll('#tbody tr')).map(row => row.cloneNode(true));
 }
