@@ -183,5 +183,22 @@ const resetFilters = () => {
     originalRows.forEach(row => {
         tbody.appendChild(row.cloneNode(true));
     });
+    addEventListenersToRows();
     console.log('Filters reset');
+}
+
+const addEventListenersToRows = () => {
+    const rows = document.querySelectorAll('#tbody tr');
+    rows.forEach(row => {
+        const buttonEdit = row.querySelector('.editBtn');
+        const buttonDelete = row.querySelector('.deleteBtn');
+
+        buttonEdit.addEventListener('click', function() {
+            editRow(row, buttonEdit);
+        });
+
+        buttonDelete.addEventListener('click', function() {
+            row.remove();
+        });
+    });
 }
