@@ -12,7 +12,7 @@ button.addEventListener('click', function() {
     console.log('Button clicked, onclick function called!');
     createNewRow();
     fieldCleaner();
-    originalRows = Array.from(document.querySelectorAll('#tbody tr'));
+    originalRows = Array.from(document.querySelectorAll('#tbody tr')).map(row => row.cloneNode(true));
     console.log(originalRows);
 });
 
@@ -163,7 +163,7 @@ const fieldCleaner = () => {
 
 const filterByStatus = (status) => {
     if (originalRows.length === 0) {
-        originalRows = Array.from(document.querySelectorAll('#tbody tr'));
+        originalRows = Array.from(document.querySelectorAll('#tbody tr')).map(row => row.cloneNode(true));
     }
 
     const rows = document.querySelectorAll('#tbody tr');
@@ -181,7 +181,7 @@ const resetFilters = () => {
     const tbody = document.getElementById('tbody');
     tbody.innerHTML = '';
     originalRows.forEach(row => {
-        tbody.appendChild(row);
+        tbody.appendChild(row.cloneNode(true));
     });
-    originalRows = [];
+    console.log('Filters reset');
 }
